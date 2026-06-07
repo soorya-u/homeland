@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@homeland/bff",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {

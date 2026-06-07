@@ -1,6 +1,6 @@
 import { BrowserWindow, Updater } from "electrobun/bun";
 
-const DEV_SERVER_PORT = 3001;
+const DEV_SERVER_PORT = 5173;
 const DEV_SERVER_URL = `http://localhost:${DEV_SERVER_PORT}`;
 
 // Check if the web dev server is running for HMR

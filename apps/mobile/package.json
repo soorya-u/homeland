@@ -1,5 +1,5 @@
 {
-  "name": "native",
+  "name": "@homeland/mobile",
   "version": "1.0.0",
   "private": true,
   "main": "expo-router/entry",
@@ -35,8 +35,8 @@
     "expo-status-bar": "~56.0.4",
     "expo-web-browser": "~56.0.5",
     "heroui-native": "^1.0.3",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "react-native": "0.85.3",
     "react-native-gesture-handler": "~2.31.1",
     "react-native-keyboard-controller": "1.21.6",

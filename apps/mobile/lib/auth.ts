@@ -1,8 +1,8 @@
 import { expoClient } from "@better-auth/expo/client";
-import { env } from "@homeland/env/native";
+import { env } from "@homeland/env/mobile";
 import { createAuthClient } from "better-auth/react";
 import Constants from "expo-constants";
-import * as SecureStore from "expo-secure-store";
+import { deleteItemAsync, getItemAsync, setItemAsync } from "expo-secure-store";
 
 export const authClient = createAuthClient({
 	baseURL: env.EXPO_PUBLIC_SERVER_URL,
@@ -10,7 +10,7 @@ export const authClient = createAuthClient({
 		expoClient({
 			scheme: Constants.expoConfig?.scheme as string,
 			storagePrefix: Constants.expoConfig?.scheme as string,
-			storage: SecureStore,
+			storage: { deleteItemAsync, getItemAsync, setItemAsync },
 		}),
 	],
 });

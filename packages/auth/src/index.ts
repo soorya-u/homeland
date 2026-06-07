@@ -1,6 +1,14 @@
 import { expo } from "@better-auth/expo";
 import { createDb } from "@homeland/db";
-import * as schema from "@homeland/db/schema/auth";
+import {
+	account,
+	accountRelations,
+	session,
+	sessionRelations,
+	user,
+	userRelations,
+	verification,
+} from "@homeland/db/schema/auth";
 import { env } from "@homeland/env/server";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
@@ -11,12 +19,20 @@ export function createAuth() {
 	return betterAuth({
 		database: drizzleAdapter(db, {
 			provider: "pg",
-
-			schema,
+			schema: {
+				account,
+				accountRelations,
+				session,
+				sessionRelations,
+				user,
+				userRelations,
+				verification,
+			},
 		}),
 		trustedOrigins: [
 			env.CORS_ORIGIN,
-			"homeland://",
+			"http://localhost:5173",
+			"dev.soorya-u.homeland://",
 			"exp://",
 			"http://localhost:8081",
 		],

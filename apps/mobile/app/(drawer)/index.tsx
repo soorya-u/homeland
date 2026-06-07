@@ -6,7 +6,7 @@ import { Pressable, Text, View } from "react-native";
 import { Container } from "@/components/container";
 import { SignIn } from "@/components/sign-in";
 import { SignUp } from "@/components/sign-up";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth";
 import { orpc, queryClient } from "@/utils/orpc";
 
 export default function Home() {
@@ -19,8 +19,6 @@ export default function Home() {
 	const mutedColor = useThemeColor("muted");
 	const successColor = useThemeColor("success");
 	const dangerColor = useThemeColor("danger");
-	const foregroundColor = useThemeColor("foreground");
-
 	return (
 		<Container className="p-6">
 			<View className="mb-6 py-4">
@@ -69,11 +67,15 @@ export default function Home() {
 								ORPC Backend
 							</Text>
 							<Card.Description>
-								{isLoading
-									? "Checking connection..."
-									: isConnected
-										? "Connected to API"
-										: "API Disconnected"}
+								{(() => {
+									if (isLoading) {
+										return "Checking connection...";
+									}
+									if (isConnected) {
+										return "Connected to API";
+									}
+									return "API Disconnected";
+								})()}
 							</Card.Description>
 						</View>
 						{isLoading && (

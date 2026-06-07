@@ -4,7 +4,8 @@
   "workspaces": {
     "packages": [
       "apps/*",
-      "packages/*"
+      "packages/*",
+      "services/*"
     ],
     "catalog": {
       "dotenv": "^17.2.2",
@@ -21,6 +22,8 @@
       "@orpc/client": "^1.13.14",
       "@tanstack/react-query": "^5.90.12",
       "@tanstack/react-form": "^1.28.0",
+      "react": "19.2.3",
+      "react-dom": "19.2.3",
       "@types/react-dom": "^19.2.3",
       "@better-auth/expo": "1.6.11",
       "drizzle-orm": "^0.45.1",
@@ -32,12 +35,12 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "check-types": "turbo check-types",
-    "dev:native": "turbo -F native dev",
-    "dev:web": "turbo -F web dev",
-    "dev:desktop": "turbo -F desktop dev:hmr",
-    "build:desktop": "turbo -F desktop build:stable",
-    "build:desktop:canary": "turbo -F desktop build:canary",
-    "dev:server": "turbo -F server dev",
+    "dev:mobile": "turbo -F @homeland/mobile dev",
+    "dev:web": "turbo -F @homeland/web dev",
+    "dev:desktop": "turbo -F @homeland/desktop dev:hmr",
+    "build:desktop": "turbo -F @homeland/desktop build:stable",
+    "build:desktop:canary": "turbo -F @homeland/desktop build:canary",
+    "dev:bff": "turbo -F bff dev",
     "dev:db": "docker compose up",
     "db:push": "turbo -F @homeland/db db:push",
     "db:studio": "turbo -F @homeland/db db:studio",
@@ -61,6 +64,14 @@
     "turbo": "^2.8.12",
     "typescript": "catalog:",
     "ultracite": "7.8.1"
+  },
+  "overrides": {
+    "@babel/generator": "7.29.7",
+    "@babel/parser": "7.29.7",
+    "@babel/types": "7.29.7",
+    "@babel/template": "7.29.7",
+    "@babel/traverse": "7.29.7",
+    "@babel/helper-validator-identifier": "7.29.7"
   },
   "packageManager": "bun@1.3.14"
 }

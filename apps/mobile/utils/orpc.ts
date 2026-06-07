@@ -1,12 +1,12 @@
 import type { AppRouterClient } from "@homeland/api/routers/index";
-import { env } from "@homeland/env/native";
+import { env } from "@homeland/env/mobile";
 import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { Platform } from "react-native";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth";
 
 export const queryClient = new QueryClient({
 	queryCache: new QueryCache({

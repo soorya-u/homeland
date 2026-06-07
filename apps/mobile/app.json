@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "homeland",
+    "scheme": "dev.soorya-u.homeland",
     "userInterfaceStyle": "automatic",
     "orientation": "default",
     "web": {

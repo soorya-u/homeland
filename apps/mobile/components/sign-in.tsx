@@ -13,15 +13,10 @@ import { useRef } from "react";
 import { Text, type TextInput, View } from "react-native";
 import z from "zod";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth";
 import { queryClient } from "@/utils/orpc";
 
-const signUpSchema = z.object({
-	name: z
-		.string()
-		.trim()
-		.min(1, "Name is required")
-		.min(2, "Name must be at least 2 characters"),
+const signInSchema = z.object({
 	email: z
 		.string()
 		.trim()
@@ -62,24 +57,21 @@ function getErrorMessage(error: unknown): string | null {
 	return null;
 }
 
-export function SignUp() {
-	const emailInputRef = useRef<TextInput>(null);
+function SignIn() {
 	const passwordInputRef = useRef<TextInput>(null);
 	const { toast } = useToast();
 
 	const form = useForm({
 		defaultValues: {
-			name: "",
 			email: "",
 			password: "",
 		},
 		validators: {
-			onSubmit: signUpSchema,
+			onSubmit: signInSchema,
 		},
 		onSubmit: async ({ value, formApi }) => {
-			await authClient.signUp.email(
+			await authClient.signIn.email(
 				{
-					name: value.name.trim(),
 					email: value.email.trim(),
 					password: value.password,
 				},
@@ -87,14 +79,14 @@ export function SignUp() {
 					onError(error) {
 						toast.show({
 							variant: "danger",
-							label: error.error?.message || "Failed to sign up",
+							label: error.error?.message || "Failed to sign in",
 						});
 					},
 					onSuccess() {
 						formApi.reset();
 						toast.show({
 							variant: "success",
-							label: "Account created successfully",
+							label: "Signed in successfully",
 						});
 						queryClient.refetchQueries();
 					},
@@ -105,7 +97,7 @@ export function SignUp() {
 
 	return (
 		<Surface className="rounded-lg p-4" variant="secondary">
-			<Text className="mb-4 font-medium text-foreground">Create Account</Text>
+			<Text className="mb-4 font-medium text-foreground">Sign In</Text>
 
 			<form.Subscribe
 				selector={(state) => ({
@@ -123,27 +115,6 @@ export function SignUp() {
 							</FieldError>
 
 							<View className="gap-3">
-								<form.Field name="name">
-									{(field) => (
-										<TextField>
-											<Label>Name</Label>
-											<Input
-												autoComplete="name"
-												blurOnSubmit={false}
-												onBlur={field.handleBlur}
-												onChangeText={field.handleChange}
-												onSubmitEditing={() => {
-													emailInputRef.current?.focus();
-												}}
-												placeholder="John Doe"
-												returnKeyType="next"
-												textContentType="name"
-												value={field.state.value}
-											/>
-										</TextField>
-									)}
-								</form.Field>
-
 								<form.Field name="email">
 									{(field) => (
 										<TextField>
@@ -159,7 +130,6 @@ export function SignUp() {
 													passwordInputRef.current?.focus();
 												}}
 												placeholder="email@example.com"
-												ref={emailInputRef}
 												returnKeyType="next"
 												textContentType="emailAddress"
 												value={field.state.value}
@@ -173,7 +143,7 @@ export function SignUp() {
 										<TextField>
 											<Label>Password</Label>
 											<Input
-												autoComplete="new-password"
+												autoComplete="password"
 												onBlur={field.handleBlur}
 												onChangeText={field.handleChange}
 												onSubmitEditing={form.handleSubmit}
@@ -181,7 +151,7 @@ export function SignUp() {
 												ref={passwordInputRef}
 												returnKeyType="go"
 												secureTextEntry
-												textContentType="newPassword"
+												textContentType="password"
 												value={field.state.value}
 											/>
 										</TextField>
@@ -196,7 +166,7 @@ export function SignUp() {
 									{isSubmitting ? (
 										<Spinner color="default" size="sm" />
 									) : (
-										<Button.Label>Create Account</Button.Label>
+										<Button.Label>Sign In</Button.Label>
 									)}
 								</Button>
 							</View>
@@ -207,3 +177,5 @@ export function SignUp() {
 		</Surface>
 	);
 }
+
+export { SignIn };

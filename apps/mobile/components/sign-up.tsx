@@ -13,10 +13,15 @@ import { useRef } from "react";
 import { Text, type TextInput, View } from "react-native";
 import z from "zod";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth";
 import { queryClient } from "@/utils/orpc";
 
-const signInSchema = z.object({
+const signUpSchema = z.object({
+	name: z
+		.string()
+		.trim()
+		.min(1, "Name is required")
+		.min(2, "Name must be at least 2 characters"),
 	email: z
 		.string()
 		.trim()
@@ -57,21 +62,24 @@ function getErrorMessage(error: unknown): string | null {
 	return null;
 }
 
-function SignIn() {
+export function SignUp() {
+	const emailInputRef = useRef<TextInput>(null);
 	const passwordInputRef = useRef<TextInput>(null);
 	const { toast } = useToast();
 
 	const form = useForm({
 		defaultValues: {
+			name: "",
 			email: "",
 			password: "",
 		},
 		validators: {
-			onSubmit: signInSchema,
+			onSubmit: signUpSchema,
 		},
 		onSubmit: async ({ value, formApi }) => {
-			await authClient.signIn.email(
+			await authClient.signUp.email(
 				{
+					name: value.name.trim(),
 					email: value.email.trim(),
 					password: value.password,
 				},
@@ -79,14 +87,14 @@ function SignIn() {
 					onError(error) {
 						toast.show({
 							variant: "danger",
-							label: error.error?.message || "Failed to sign in",
+							label: error.error?.message || "Failed to sign up",
 						});
 					},
 					onSuccess() {
 						formApi.reset();
 						toast.show({
 							variant: "success",
-							label: "Signed in successfully",
+							label: "Account created successfully",
 						});
 						queryClient.refetchQueries();
 					},
@@ -97,7 +105,7 @@ function SignIn() {
 
 	return (
 		<Surface className="rounded-lg p-4" variant="secondary">
-			<Text className="mb-4 font-medium text-foreground">Sign In</Text>
+			<Text className="mb-4 font-medium text-foreground">Create Account</Text>
 
 			<form.Subscribe
 				selector={(state) => ({
@@ -115,6 +123,27 @@ function SignIn() {
 							</FieldError>
 
 							<View className="gap-3">
+								<form.Field name="name">
+									{(field) => (
+										<TextField>
+											<Label>Name</Label>
+											<Input
+												autoComplete="name"
+												blurOnSubmit={false}
+												onBlur={field.handleBlur}
+												onChangeText={field.handleChange}
+												onSubmitEditing={() => {
+													emailInputRef.current?.focus();
+												}}
+												placeholder="John Doe"
+												returnKeyType="next"
+												textContentType="name"
+												value={field.state.value}
+											/>
+										</TextField>
+									)}
+								</form.Field>
+
 								<form.Field name="email">
 									{(field) => (
 										<TextField>
@@ -130,6 +159,7 @@ function SignIn() {
 													passwordInputRef.current?.focus();
 												}}
 												placeholder="email@example.com"
+												ref={emailInputRef}
 												returnKeyType="next"
 												textContentType="emailAddress"
 												value={field.state.value}
@@ -143,7 +173,7 @@ function SignIn() {
 										<TextField>
 											<Label>Password</Label>
 											<Input
-												autoComplete="password"
+												autoComplete="new-password"
 												onBlur={field.handleBlur}
 												onChangeText={field.handleChange}
 												onSubmitEditing={form.handleSubmit}
@@ -151,7 +181,7 @@ function SignIn() {
 												ref={passwordInputRef}
 												returnKeyType="go"
 												secureTextEntry
-												textContentType="password"
+												textContentType="newPassword"
 												value={field.state.value}
 											/>
 										</TextField>
@@ -166,7 +196,7 @@ function SignIn() {
 									{isSubmitting ? (
 										<Spinner color="default" size="sm" />
 									) : (
-										<Button.Label>Sign In</Button.Label>
+										<Button.Label>Create Account</Button.Label>
 									)}
 								</Button>
 							</View>
@@ -177,5 +207,3 @@ function SignIn() {
 		</Surface>
 	);
 }
-
-export { SignIn };

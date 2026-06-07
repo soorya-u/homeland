@@ -97,11 +97,13 @@ function TodosRoute() {
 						<div className="flex justify-center py-4">
 							<Loader2 className="h-6 w-6 animate-spin" />
 						</div>
-					) : todos.data?.length === 0 ? (
+					) : null}
+					{todos.data?.length === 0 && (
 						<p className="py-4 text-center">No todos yet. Add one above!</p>
-					) : (
+					)}
+					{todos.data?.length ? (
 						<ul className="space-y-2">
-							{todos.data?.map((todo) => (
+							{todos.data.map((todo) => (
 								<li
 									className="flex items-center justify-between rounded-md border p-2"
 									key={todo.id}
@@ -132,7 +134,7 @@ function TodosRoute() {
 								</li>
 							))}
 						</ul>
-					)}
+					) : null}
 				</CardContent>
 			</Card>
 		</div>

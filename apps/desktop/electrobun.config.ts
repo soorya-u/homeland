@@ -5,7 +5,7 @@ const webBuildDir = "../web/dist";
 export default {
 	app: {
 		name: "homeland",
-		identifier: "dev.bettertstack.homeland.desktop",
+		identifier: "dev.soorya-u.homeland",
 		version: "0.0.1",
 	},
 	runtime: {
@@ -20,16 +20,16 @@ export default {
 		},
 		watchIgnore: [`${webBuildDir}/**`],
 		mac: {
-			bundleCEF: true,
-			defaultRenderer: "cef",
+			bundleCEF: false,
+			defaultRenderer: "native",
 		},
 		linux: {
-			bundleCEF: true,
-			defaultRenderer: "cef",
+			bundleCEF: false,
+			defaultRenderer: "native",
 		},
 		win: {
-			bundleCEF: true,
-			defaultRenderer: "cef",
+			bundleCEF: false,
+			defaultRenderer: "native",
 		},
 	},
 } satisfies ElectrobunConfig;
