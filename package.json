@@ -1,0 +1,67 @@
+{
+  "name": "homeland",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "dotenv": "^17.2.2",
+      "zod": "^4.1.13",
+      "typescript": "^6",
+      "@types/bun": "^1.3.4",
+      "elysia": "^1.4.28",
+      "@orpc/server": "^1.13.14",
+      "@orpc/openapi": "^1.13.14",
+      "@orpc/zod": "^1.13.14",
+      "better-auth": "1.6.11",
+      "next-themes": "^0.4.6",
+      "@orpc/tanstack-query": "^1.13.14",
+      "@orpc/client": "^1.13.14",
+      "@tanstack/react-query": "^5.90.12",
+      "@tanstack/react-form": "^1.28.0",
+      "@types/react-dom": "^19.2.3",
+      "@better-auth/expo": "1.6.11",
+      "drizzle-orm": "^0.45.1",
+      "@types/pg": "^8.16.0"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:desktop": "turbo -F desktop dev:hmr",
+    "build:desktop": "turbo -F desktop build:stable",
+    "build:desktop:canary": "turbo -F desktop build:canary",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @homeland/db db:push",
+    "db:studio": "turbo -F @homeland/db db:studio",
+    "db:generate": "turbo -F @homeland/db db:generate",
+    "db:migrate": "turbo -F @homeland/db db:migrate",
+    "db:start": "turbo -F @homeland/db db:start",
+    "db:watch": "turbo -F @homeland/db db:watch",
+    "db:stop": "turbo -F @homeland/db db:stop",
+    "db:down": "turbo -F @homeland/db db:down",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
+  },
+  "dependencies": {
+    "@homeland/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.15",
+    "@homeland/config": "workspace:*",
+    "@types/bun": "catalog:",
+    "lefthook": "latest",
+    "turbo": "^2.8.12",
+    "typescript": "catalog:",
+    "ultracite": "7.8.1"
+  },
+  "packageManager": "bun@1.3.14"
+}
