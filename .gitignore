@@ -49,3 +49,11 @@ coverage
 .cache
 tmp
 temp
+
+#region dotagents
+.agents/
+.claude/skills/
+.opencode/
+AGENTS.md
+CLAUDE.md
+#endregion dotagents

@@ -1,0 +1,7 @@
+schema = "https://dotagents.soorya-u.dev/schemas/config.schema.json"
+features = [
+    "instruction",
+    "skill",
+]
+
+targets = ["claude", "opencode", "codex"]

@@ -8,7 +8,6 @@
 //
 // Add new addons with: bun create better-t-stack add
 // This file is safe to delete
-
 {
   "$schema": "https://r2.better-t-stack.dev/schema.json",
   "version": "3.31.1",
@@ -18,14 +17,27 @@
   "orm": "drizzle",
   "backend": "elysia",
   "runtime": "bun",
-  "frontend": ["tanstack-router", "native-uniwind"],
-  "addons": ["biome", "electrobun", "evlog", "lefthook", "skills", "turborepo", "ultracite"],
-  "examples": ["todo"],
+  "frontend": [
+    "tanstack-router",
+    "native-uniwind"
+  ],
+  "addons": [
+    "biome",
+    "electrobun",
+    "evlog",
+    "lefthook",
+    "skills",
+    "turborepo",
+    "ultracite"
+  ],
+  "examples": [
+    "todo"
+  ],
   "auth": "better-auth",
   "payments": "none",
   "packageManager": "bun",
   "dbSetup": "docker",
   "api": "orpc",
   "webDeploy": "none",
-  "serverDeploy": "none",
+  "serverDeploy": "none"
 }
