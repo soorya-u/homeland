@@ -46,7 +46,7 @@
     "db:studio": "bun env:load -- turbo -F @homeland/db db:studio",
     "db:generate": "bun env:load -- turbo -F @homeland/db db:generate",
     "db:migrate": "bun env:load -- turbo -F @homeland/db db:migrate",
-    "auth:generate": "bun env:load -- turbo run generate -F @homeland/auth",
+    "auth:generate": "bun env:load -- turbo -F @homeland/auth auth:generate",
     "db:stop": "docker compose stop",
     "db:down": "docker compose down",
     "check": "ultracite check",
