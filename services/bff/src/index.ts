@@ -1,4 +1,5 @@
 import { join } from "node:path";
+import { config as dotenvConfig } from "@dotenvx/dotenvx";
 import { cors } from "@elysiajs/cors";
 import { createContext } from "@homeland/api/context";
 import { appRouter } from "@homeland/api/routers/index";
@@ -9,7 +10,6 @@ import { OpenAPIReferencePlugin } from "@orpc/openapi/plugins";
 import { onError } from "@orpc/server";
 import { RPCHandler } from "@orpc/server/fetch";
 import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
-import dotenv from "dotenv";
 import { Elysia } from "elysia";
 import { initLogger } from "evlog";
 import {
@@ -18,7 +18,7 @@ import {
 } from "evlog/better-auth";
 import { evlog } from "evlog/elysia";
 
-dotenv.config({ path: join(import.meta.dirname, "../../../.env") });
+dotenvConfig({ path: join(import.meta.dirname, "../.env") });
 
 const rpcHandler = new RPCHandler(appRouter, {
 	interceptors: [

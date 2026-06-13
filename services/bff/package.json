@@ -20,7 +20,7 @@
     "@orpc/zod": "catalog:",
     "@sinclair/typebox": "^0.34.49",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
+    "@dotenvx/dotenvx": "catalog:",
     "elysia": "catalog:",
     "evlog": "^2.14.1",
     "zod": "catalog:"

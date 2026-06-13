@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { env } from "@homeland/env/server";
 import { defineConfig } from "drizzle-kit";
 

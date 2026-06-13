@@ -19,7 +19,6 @@
     "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
     "@types/pg": "catalog:",
-    "dotenv": "catalog:",
     "drizzle-orm": "catalog:",
     "zod": "catalog:"
   },
