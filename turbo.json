@@ -56,7 +56,7 @@
     "db:down": {
       "cache": false
     },
-    "generate": {
+    "auth:generate": {
       "cache": false
     }
   }
