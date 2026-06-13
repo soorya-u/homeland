@@ -1,6 +1,12 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
+  "$schema": "https://v2-9-18.turborepo.dev/schema.json",
+  "ui": "stream",
+  "globalPassThroughEnv": [
+    "DATABASE_URL",
+    "BETTER_AUTH_SECRET",
+    "BETTER_AUTH_URL",
+    "CORS_ORIGIN"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -48,6 +54,9 @@
       "persistent": true
     },
     "db:down": {
+      "cache": false
+    },
+    "auth:generate": {
       "cache": false
     }
   }

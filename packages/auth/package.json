@@ -9,13 +9,14 @@
       "default": "./src/*.ts"
     }
   },
-  "scripts": {},
+  "scripts": {
+    "generate": "bun x @better-auth/cli generate -y --config src/index.ts --output ../db/src/schema/auth.ts"
+  },
   "dependencies": {
     "@better-auth/expo": "catalog:",
     "@homeland/db": "workspace:*",
     "@homeland/env": "workspace:*",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

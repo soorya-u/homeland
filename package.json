@@ -8,7 +8,7 @@
       "services/*"
     ],
     "catalog": {
-      "dotenv": "^17.2.2",
+      "@dotenvx/dotenvx": "^1.71.3",
       "zod": "^4.1.13",
       "typescript": "^6",
       "@types/bun": "^1.3.4",
@@ -42,26 +42,29 @@
     "build:desktop:canary": "turbo -F @homeland/desktop build:canary",
     "dev:bff": "turbo -F bff dev",
     "dev:db": "docker compose up",
-    "db:push": "turbo -F @homeland/db db:push",
-    "db:studio": "turbo -F @homeland/db db:studio",
-    "db:generate": "turbo -F @homeland/db db:generate",
-    "db:migrate": "turbo -F @homeland/db db:migrate",
+    "db:push": "bun env:load -- turbo -F @homeland/db db:push",
+    "db:studio": "bun env:load -- turbo -F @homeland/db db:studio",
+    "db:generate": "bun env:load -- turbo -F @homeland/db db:generate",
+    "db:migrate": "bun env:load -- turbo -F @homeland/db db:migrate",
+    "auth:generate": "bun env:load -- turbo -F @homeland/auth auth:generate",
     "db:stop": "docker compose stop",
     "db:down": "docker compose down",
     "check": "ultracite check",
-    "fix": "ultracite fix"
+    "fix": "ultracite fix",
+    "env:load": "bun x dotenvx run -f services/bff/.env --"
   },
   "dependencies": {
     "@homeland/env": "workspace:*",
-    "dotenv": "catalog:",
+    "@dotenvx/dotenvx": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
     "@homeland/config": "workspace:*",
+    "@noble/ciphers": "^1.3.0",
     "@types/bun": "catalog:",
     "lefthook": "latest",
-    "turbo": "^2.8.12",
+    "turbo": "^2.9.18",
     "typescript": "catalog:",
     "ultracite": "7.8.1"
   },

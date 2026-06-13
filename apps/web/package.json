@@ -23,7 +23,6 @@
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "^1.168.22",
     "better-auth": "catalog:",
-    "dotenv": "catalog:",
     "lucide-react": "^1.8.0",
     "next-themes": "catalog:",
     "react": "catalog:",
