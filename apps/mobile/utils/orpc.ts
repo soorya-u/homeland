@@ -4,15 +4,14 @@ import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
+import { log } from "evlog";
 import { Platform } from "react-native";
 
 import { authClient } from "@/lib/auth";
 
 export const queryClient = new QueryClient({
 	queryCache: new QueryCache({
-		onError: (error) => {
-			console.log(error);
-		},
+		onError: (error) => log.error({ kind: "query_error", error }),
 	}),
 });
 

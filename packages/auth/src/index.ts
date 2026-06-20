@@ -12,8 +12,14 @@ import {
 import { env } from "@homeland/env/server";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import type { Enforcer } from "casbin";
 
-export function createAuth() {
+import { authorizationServerPlugin } from "./plugins/server";
+
+export type { Enforcer } from "casbin";
+export type Auth = ReturnType<typeof createAuth>;
+
+export function createAuth(enforcer: Enforcer) {
 	const db = createDb();
 
 	return betterAuth({
@@ -39,6 +45,15 @@ export function createAuth() {
 		emailAndPassword: {
 			enabled: true,
 		},
+		user: {
+			additionalFields: {
+				role: {
+					type: "string",
+					defaultValue: "user",
+					input: false,
+				},
+			},
+		},
 		secret: env.BETTER_AUTH_SECRET,
 		baseURL: env.BETTER_AUTH_URL,
 		advanced: {
@@ -48,8 +63,6 @@ export function createAuth() {
 				httpOnly: true,
 			},
 		},
-		plugins: [expo()],
+		plugins: [expo(), authorizationServerPlugin(enforcer)],
 	});
 }
-
-export const auth = createAuth();

@@ -30,9 +30,7 @@
     "turborepo",
     "ultracite"
   ],
-  "examples": [
-    "todo"
-  ],
+  "examples": [],
   "auth": "better-auth",
   "payments": "none",
   "packageManager": "bun",

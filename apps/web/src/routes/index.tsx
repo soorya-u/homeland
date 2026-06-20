@@ -24,7 +24,7 @@ const TITLE_TEXT = `
  `;
 
 function HomeComponent() {
-	const healthCheck = useQuery(orpc.healthCheck.queryOptions());
+	const health = useQuery(orpc.health.queryOptions());
 
 	return (
 		<div className="container mx-auto max-w-3xl px-4 py-2">
@@ -34,14 +34,14 @@ function HomeComponent() {
 					<h2 className="mb-2 font-medium">API Status</h2>
 					<div className="flex items-center gap-2">
 						<div
-							className={`h-2 w-2 rounded-full ${healthCheck.data ? "bg-green-500" : "bg-red-500"}`}
+							className={`h-2 w-2 rounded-full ${health.data ? "bg-green-500" : "bg-red-500"}`}
 						/>
 						<span className="text-muted-foreground text-sm">
 							{(() => {
-								if (healthCheck.isLoading) {
+								if (health.isLoading) {
 									return "Checking...";
 								}
-								if (healthCheck.data) {
+								if (health.data) {
 									return "Connected";
 								}
 								return "Disconnected";

@@ -5,6 +5,24 @@
     ".": {
       "default": "./src/index.ts"
     },
+    "./client/web": {
+      "default": "./src/client/web.ts"
+    },
+    "./client/mobile": {
+      "default": "./src/client/mobile.ts"
+    },
+    "./plugins/server": {
+      "default": "./src/plugins/server.ts"
+    },
+    "./plugins/client": {
+      "default": "./src/plugins/client.ts"
+    },
+    "./casbin": {
+      "default": "./src/casbin.ts"
+    },
+    "./middleware": {
+      "default": "./src/middleware.ts"
+    },
     "./*": {
       "default": "./src/*.ts"
     }
@@ -17,6 +35,9 @@
     "@homeland/db": "workspace:*",
     "@homeland/env": "workspace:*",
     "better-auth": "catalog:",
+    "casbin": "catalog:",
+    "drizzle-adapter": "catalog:",
+    "nanostores": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

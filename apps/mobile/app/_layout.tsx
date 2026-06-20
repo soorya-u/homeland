@@ -1,5 +1,6 @@
 import "@/global.css";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { initLogger } from "evlog";
 import { Stack } from "expo-router";
 import { HeroUINativeProvider } from "heroui-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -7,6 +8,8 @@ import { KeyboardProvider } from "react-native-keyboard-controller";
 
 import { AppThemeProvider } from "@/contexts/app-theme-context";
 import { queryClient } from "@/utils/orpc";
+
+initLogger({ env: { service: "homeland/mobile" } });
 
 export const unstable_settings = {
 	initialRouteName: "(drawer)",

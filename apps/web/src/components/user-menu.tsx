@@ -11,7 +11,7 @@ import {
 import { Skeleton } from "@homeland/ui/components/skeleton";
 import { Link, useNavigate } from "@tanstack/react-router";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth";
 
 export default function UserMenu() {
 	const navigate = useNavigate();

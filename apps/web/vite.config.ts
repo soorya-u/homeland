@@ -1,6 +1,7 @@
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
+import evlog from "evlog/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -14,5 +15,11 @@ export default defineConfig({
 			autoCodeSplitting: true,
 		}),
 		react(),
+		evlog({
+			service: "homeland/web",
+			client: {
+				console: true,
+			},
+		}),
 	],
 });
