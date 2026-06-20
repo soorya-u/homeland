@@ -20,6 +20,7 @@
     "@orpc/zod": "catalog:",
     "@types/pg": "catalog:",
     "drizzle-orm": "catalog:",
+    "evlog": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

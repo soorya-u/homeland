@@ -73,24 +73,6 @@ function DrawerLayout() {
 					),
 				}}
 			/>
-			<Drawer.Screen
-				name="todos"
-				options={{
-					headerTitle: "Todos",
-					drawerLabel: ({ color, focused }) => (
-						<Text style={{ color: focused ? color : themeColorForeground }}>
-							Todos
-						</Text>
-					),
-					drawerIcon: ({ size, color, focused }) => (
-						<Ionicons
-							color={focused ? color : themeColorForeground}
-							name="checkbox-outline"
-							size={size}
-						/>
-					),
-				}}
-			/>
 		</Drawer>
 	);
 }

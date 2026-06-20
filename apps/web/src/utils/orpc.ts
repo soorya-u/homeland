@@ -6,6 +6,13 @@ import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
+const CSRF_COOKIE_PATTERN = /(?:^|;\s*)_csrf=([^;]+)/;
+
+function getCsrfToken(): string | undefined {
+	const match = document.cookie.match(CSRF_COOKIE_PATTERN);
+	return match?.[1];
+}
+
 export function createQueryClient() {
 	return new QueryClient({
 		queryCache: new QueryCache({
@@ -32,6 +39,10 @@ export const link = new RPCLink({
 			...options,
 			credentials: "include",
 		});
+	},
+	headers() {
+		const csrfToken = getCsrfToken();
+		return csrfToken ? { "x-csrf-token": csrfToken } : {};
 	},
 });
 

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@homeland/api": "workspace:*",
+    "@homeland/auth": "workspace:*",
     "@homeland/env": "workspace:*",
     "@homeland/ui": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
@@ -23,6 +24,7 @@
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "^1.168.22",
     "better-auth": "catalog:",
+    "evlog": "catalog:",
     "lucide-react": "^1.8.0",
     "next-themes": "catalog:",
     "react": "catalog:",

@@ -10,10 +10,9 @@ import { authClient } from "@/lib/auth";
 import { orpc, queryClient } from "@/utils/orpc";
 
 export default function Home() {
-	const healthCheck = useQuery(orpc.healthCheck.queryOptions());
-	const privateData = useQuery(orpc.privateData.queryOptions());
-	const isConnected = healthCheck?.data === "OK";
-	const isLoading = healthCheck?.isLoading;
+	const health = useQuery(orpc.health.queryOptions());
+	const isConnected = health?.data === "OK";
+	const isLoading = health?.isLoading;
 	const { data: session } = authClient.useSession();
 
 	const mutedColor = useThemeColor("muted");
@@ -93,13 +92,6 @@ export default function Home() {
 						)}
 					</View>
 				</Card>
-			</Card>
-
-			<Card className="mt-6 p-4" variant="secondary">
-				<Card.Title className="mb-3">Private Data</Card.Title>
-				{privateData && (
-					<Card.Description>{privateData.data?.message}</Card.Description>
-				)}
 			</Card>
 
 			{!session?.user && (

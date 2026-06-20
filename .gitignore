@@ -53,7 +53,7 @@ temp
 #region dotagents
 .agents/
 .claude/skills/
-.opencode/
+.opencode/skills/
 AGENTS.md
 CLAUDE.md
 #endregion dotagents

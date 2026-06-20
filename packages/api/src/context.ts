@@ -1,17 +1,23 @@
-import { auth } from "@homeland/auth";
+import type { Auth, Enforcer } from "@homeland/auth";
 import type { Context as ElysiaContext } from "elysia";
 
 export interface CreateContextOptions {
+	auth: Auth;
 	context: ElysiaContext;
+	enforcer: Enforcer;
 }
 
-export async function createContext({ context }: CreateContextOptions) {
+export async function createContext({
+	context,
+	auth,
+	enforcer,
+}: CreateContextOptions) {
 	const session = await auth.api.getSession({
 		headers: context.request.headers,
 	});
 	return {
-		auth: null,
 		session,
+		enforcer,
 	};
 }
 

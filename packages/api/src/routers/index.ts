@@ -1,15 +1,15 @@
 import type { RouterClient } from "@orpc/server";
 
-import { protectedProcedure, publicProcedure } from "../index";
-import { todoRouter } from "./todo";
+import { publicProcedure } from "../index";
+import { permissionsRouter } from "./permissions";
+import { shareRouter } from "./share";
 
 export const appRouter = {
-	healthCheck: publicProcedure.handler(() => "OK"),
-	privateData: protectedProcedure.handler(({ context }) => ({
-		message: "This is private",
-		user: context.session?.user,
-	})),
-	todo: todoRouter,
+	health: publicProcedure
+		.route({ method: "GET", path: "/health" })
+		.handler(() => "OK"),
+	permissions: permissionsRouter,
+	share: shareRouter,
 };
 export type AppRouter = typeof appRouter;
 export type AppRouterClient = RouterClient<typeof appRouter>;

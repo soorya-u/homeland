@@ -10,6 +10,9 @@
     "start": "bun run dist/index.mjs"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "catalog:",
+    "@elysia/opentelemetry": "^1.4.12",
+    "@elysia/server-timing": "^1.4.1",
     "@elysiajs/cors": "^1.4.1",
     "@homeland/api": "workspace:*",
     "@homeland/auth": "workspace:*",
@@ -20,9 +23,11 @@
     "@orpc/zod": "catalog:",
     "@sinclair/typebox": "^0.34.49",
     "better-auth": "catalog:",
-    "@dotenvx/dotenvx": "catalog:",
     "elysia": "catalog:",
-    "evlog": "^2.14.1",
+    "elysia-csrf": "^0.1.0",
+    "elysia-helmet": "^3.1.0",
+    "elysia-rate-limit": "^4.6.2",
+    "evlog": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
